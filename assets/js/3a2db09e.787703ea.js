@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkportfolio_portal=self.webpackChunkportfolio_portal||[]).push([[121],{8070:a=>{a.exports=JSON.parse('{"tags":[{"label":"Data Governanace","permalink":"/blog/tags/data-governence","description":"Data Governanace Disscussion","count":1},{"label":"Data Model","permalink":"/blog/tags/data-model","description":"Data Model Disscussion","count":1}]}')}}]);
