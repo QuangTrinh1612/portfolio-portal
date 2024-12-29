@@ -20,37 +20,6 @@ function Experience() {
           {/* Work Section */}
           <div className="qualification__content qualification__active" data-content id="work">
             {/* Work 1 */}
-
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Solution Architect</h3>
-                <span className="qualification__subtitle">Rackspace Technology</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt"></i>
-                  2023 - Current
-                </div>
-              </div>
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-            </div>
-
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Lead Data Engineer</h3>
-                <span className="qualification__subtitle">Rackspace Technology</span>
-                <div className="qualification__calendar">
-                  <i className="uil uil-calendar-alt"></i>
-                  2021 - 2023
-                </div>
-              </div>
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-            </div>
-
             <div className="qualification__data">
               <div>
                 <h3 className="qualification__title">Senior Data Engineer</h3>

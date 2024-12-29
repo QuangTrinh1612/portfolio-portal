@@ -11,6 +11,7 @@ import resume from "../../static/files/resume.pdf";
 import Contact from "../components/Contact";
 import Projects from "../components/Projects";
 import Qualification from "../components/Experience";
+import Certificate from "../components/Certificate";
 
 function Home() {
   const context = useDocusaurusContext();
@@ -95,6 +96,10 @@ function Home() {
             style={animatedHero}
           />
         </Grid>
+      </Grid>
+      {/* Certificate */}
+      <Grid>
+        <Certificate />
       </Grid>
       {/* Experiences */}
       <Grid>

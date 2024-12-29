@@ -1,19 +1,9 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+Data Model:
+  label: Data Model
+  permalink: /data-model
+  description: Data Model Disscussion
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
-
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
-
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+Data Governance:
+  label: Data Governanace
+  permalink: /data-governence
+  description: Data Governanace Disscussion

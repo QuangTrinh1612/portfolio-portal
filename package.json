@@ -22,6 +22,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@iconscout/unicons": "^4.2.0",
     "@mdx-js/react": "^3.0.0",
     "@mui/material": "^6.3.0",
     "@react-spring/web": "^9.7.5",
