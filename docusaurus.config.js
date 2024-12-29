@@ -76,9 +76,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Lewis',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Lewis logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -88,11 +88,14 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
+          
+          {to: "resume", label: "Resume", position: "left" },
           {to: '/blog', label: 'Blog', position: 'left'},
+          
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/QuangTrinh1612',
             label: 'GitHub',
-            position: 'right',
+            position: 'right'
           },
         ],
       },
