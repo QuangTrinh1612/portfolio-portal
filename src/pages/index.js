@@ -56,7 +56,7 @@ function Home() {
           <animated.div style={animatedTexts[1]}>
             <Typography variant="body1">
               <Translate>
-              Experienced Solution Architect specializing in Data Platforms with over 9 years of expertise in designing scalable solutions.
+              Experienced Solution Architect specializing in Data Platforms with over 10 years of expertise in designing scalable solutions.
               </Translate>{" "}
               <br></br>
               <Translate>

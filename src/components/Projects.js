@@ -20,7 +20,7 @@ const Projects = () => {
       title: "ERP Analytics Framework",
       github: "https://github.com/QuangTrinh1612/erp-analytics-platform",
       url: "hhttps://github.com/QuangTrinh1612/erp-analytics-platform",
-      image: "img/PowerBIAPI.jpg",
+      image: "img/erp-analytics.jpg",
       index: 1,
     },
   ];

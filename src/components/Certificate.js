@@ -33,7 +33,7 @@ function Certificate() {
         image: 'img/certificate/azure-admin.png',
     },
     {
-        title: 'Azure Administrator',
+        title: 'Fabrics Analytics Engineer',
         url: 'https://learn.microsoft.com/en-us/users/quangtrinh-7488/credentials/334acff5abe5dccc',
         image: 'img/certificate/azure-fabrics.png',
     },
