@@ -138,6 +138,9 @@ Shared CSS
 .section__title, .section__subtitle {
   text-align: center;
 }
+.calendar-icon {
+  margin-right: 8px; /* Adjust spacing as needed */
+}
 
 /*
 ===============
@@ -381,6 +384,10 @@ html[data-theme="dark"] .work-info h3 {
 }
 
 /*==================== QUALIFICATION ====================*/
+.qualification {
+  padding-bottom: 4.5rem;
+}
+
 .qualification__tabs {
   display: flex;
   justify-content: space-evenly;
@@ -440,6 +447,10 @@ html[data-theme="dark"] .work-info h3 {
 
 .qualification__button.qualification__active {
   color: var(--ifm-color-primary);
+}
+
+.qualification__left {
+  text-align: right;
 }
 
 /*==================== CERTIFICATION ====================*/
