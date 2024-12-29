@@ -19,9 +19,19 @@ const Projects = () => {
         "This project demonstrates how to build a data pipeline using dbt for data modeling and Apache Airflow for orchestration. The pipeline includes building dbt models and orchestrating them through Airflow to automate data processing and transformation tasks. It also includes the templates for SAP and Oracle Fusion Data Model to construct bronze, silver, gold until semantic layers",
       title: "ERP Analytics Framework",
       github: "https://github.com/QuangTrinh1612/erp-analytics-platform",
-      url: "hhttps://github.com/QuangTrinh1612/erp-analytics-platform",
+      url: "https://github.com/QuangTrinh1612/erp-analytics-platform",
       image: "img/erp-analytics.jpg",
       index: 1,
+    },
+    {
+      stack: ["Llama", "Langchain", "Langraph", "vnstock", "Python"],
+      description:
+        "The Finance-Advisor project is a cutting-edge application leveraging Large Language Models (LLMs) to act as an intelligent financial advisor. It focuses on analyzing the Vietnamese Stock Market and broader economic indicators to provide users with actionable investment signals for stock trading. The project combines advanced AI technologies with financial expertise to empower users with data-driven insights.",
+      title: "Financial Advisor Agent",
+      github: "https://github.com/QuangTrinh1612/Finance-Advisor",
+      url: "https://github.com/QuangTrinh1612/Finance-Advisor",
+      image: "img/stock-market.jpg",
+      index: 2,
     },
   ];
   return (
