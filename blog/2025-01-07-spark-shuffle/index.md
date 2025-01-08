@@ -2,7 +2,7 @@
 slug: spark-shuffle
 title: Spark Optimization - Reducing Shuffle
 authors: [lewis]
-tags: [Spark, Shuffles]
+tags: [Spark]
 ---
 
 > “Shuffling is the only thing which Nature cannot undo.” — **Arthur Eddington**
