@@ -2,11 +2,63 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lewisblog.github.io/portfolio-portal/blog</id>
     <title>Lewis Website Blog</title>
-    <updated>2025-01-07T00:00:00.000Z</updated>
+    <updated>2025-01-08T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lewisblog.github.io/portfolio-portal/blog"/>
     <subtitle>Lewis Website Blog</subtitle>
     <icon>https://lewisblog.github.io/portfolio-portal/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Databricks Cluster Optimization]]></title>
+        <id>https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration</id>
+        <link href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration"/>
+        <updated>2025-01-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Discussion Topic]]></summary>
+        <content type="html"><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="discussion-topic">Discussion Topic<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#discussion-topic" class="hash-link" aria-label="Direct link to Discussion Topic" title="Direct link to Discussion Topic">​</a></h2>
+<p>What kind of cluster configuration should you use for your Databricks workloads?</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="driver-selection">Driver selection:<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#driver-selection" class="hash-link" aria-label="Direct link to Driver selection:" title="Direct link to Driver selection:">​</a></h2>
+<ul>
+<li>In most cases the driver is not required to be as large as the workers as the driver is mainly responsible for assigning tasks to the workers and does not perform any operations itself (except for single node cluster wherein the driver is the only node).</li>
+</ul>
+<ul>
+<li>Cases when a large driver is required:<!-- -->
+<ul>
+<li><code>Collect()</code>: When using <code>collect()</code> or any other such operation multiple times wherein the value is returned to the driver for usage as a variable. This puts a load on the driver as it collects the value as well as distributes it to the workers as a variable for usage down the line.</li>
+<li>Many small files problem: When reading from a file store and there are many small files that need to be read this puts a strain on the driver as it is responsible for assigning the files to be read to the respective workers. Tip: If the driver cannot be upsized, look into resizing the files in the file store to make the reads more performant.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="types-of-clusters-description-and-best-practices">Types of clusters, description and best practices:<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#types-of-clusters-description-and-best-practices" class="hash-link" aria-label="Direct link to Types of clusters, description and best practices:" title="Direct link to Types of clusters, description and best practices:">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="memory-optimized-cluster">Memory optimized cluster:<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#memory-optimized-cluster" class="hash-link" aria-label="Direct link to Memory optimized cluster:" title="Direct link to Memory optimized cluster:">​</a></h3>
+<p>Fewer cores per worker i.e., less parallelism however this results in greater amount of memory per core.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-to-use">When to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-to-use" class="hash-link" aria-label="Direct link to When to use" title="Direct link to When to use">​</a></h4>
+<p>Jobs where shuffling/wide transformations will be required i.e., join, group by. Due to higher memory per core as well as fewer cores, there will be less shuffling and risk of spill onto disk due to increased data size is reduced. Useful for scenarios wherein there will be data caching required or if the same data is called on repeatedly either for analysis or a job.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-not-to-use">When not to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-not-to-use" class="hash-link" aria-label="Direct link to When not to use" title="Direct link to When not to use">​</a></h4>
+<p>Jobs where shuffling/wide transformations are not required, and the same task can be performed on smaller partitions in parallel unlike join/group by which requires looking up entire dataset for keys.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="compute-optimized-cluster">Compute optimized cluster:<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#compute-optimized-cluster" class="hash-link" aria-label="Direct link to Compute optimized cluster:" title="Direct link to Compute optimized cluster:">​</a></h3>
+<p>Higher number of cores per worker resulting in more parallel tasks being carried out, resulting in less memory per worker as compared to the above 2.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-to-use-1">When to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-to-use-1" class="hash-link" aria-label="Direct link to When to use" title="Direct link to When to use">​</a></h4>
+<p>Jobs carrying out the same task repeatedly ideally without wide transformations requiring shuffling.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-not-to-use-1">When not to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-not-to-use-1" class="hash-link" aria-label="Direct link to When not to use" title="Direct link to When not to use">​</a></h4>
+<p>Jobs where shuffling/wide transformations are present as it will result in a lot of shuffling and the result may be larger than the memory of the core causing spill onto disk.</p>
+<p>For optimal performance tune spark configurations for spark.sql.files.maxPartitionBytes and spark.sql.shuffle.partitions according to the memory per core and cores per worker respectively.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="general-purpose-cluster">General purpose cluster:<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#general-purpose-cluster" class="hash-link" aria-label="Direct link to General purpose cluster:" title="Direct link to General purpose cluster:">​</a></h3>
+<p>Comparable to compute optimized cluster having a larger amount of memory per worker and hence per core as compared to a compute optimized cluster.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-to-use-2">When to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-to-use-2" class="hash-link" aria-label="Direct link to When to use" title="Direct link to When to use">​</a></h4>
+<p>Repetitive tasks being carried out on data where there might be some shuffling involved but not an extensive amount. Spilling to disk due to joins is less of a risk here due to higher memory per core.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-not-to-use-2">When not to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-not-to-use-2" class="hash-link" aria-label="Direct link to When not to use" title="Direct link to When not to use">​</a></h4>
+<p>Repetitive tasks being carried out on data where no shuffling is involved (this will be more performant on compute optimized) or if there is are a lot of wide transformations required (this will be more performant on memory optimized).</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="storage-optimized-cluster">Storage optimized cluster:<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#storage-optimized-cluster" class="hash-link" aria-label="Direct link to Storage optimized cluster:" title="Direct link to Storage optimized cluster:">​</a></h3>
+<p>Equal to memory optimized cluster with respect to memory and number of cores per worker difference being it has an increased disk throughput and IO.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-to-use-3">When to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-to-use-3" class="hash-link" aria-label="Direct link to When to use" title="Direct link to When to use">​</a></h4>
+<p>Similar use cases as memory optimized cluster, however especially recommended if the same data is to be read multiple times and there is risk of spill to disk due to increased data size after wide transformations.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="when-not-to-use-3">When not to use<a href="https://lewisblog.github.io/portfolio-portal/blog/spark-cluster-configuration#when-not-to-use-3" class="hash-link" aria-label="Direct link to When not to use" title="Direct link to When not to use">​</a></h4>
+<p>Operations that can be performed in parallel and do not require shuffling. Data is not required to be re-reads multiple times.</p>]]></content>
+        <author>
+            <name>Lewis Quoc Quang</name>
+            <uri>https://www.linkedin.com/in/trinh-quoc-quang/</uri>
+        </author>
+        <category label="Spark" term="Spark"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Spark Optimization - Reducing Shuffle]]></title>
         <id>https://lewisblog.github.io/portfolio-portal/blog/spark-shuffle</id>
@@ -73,7 +125,6 @@
             <uri>https://www.linkedin.com/in/trinh-quoc-quang/</uri>
         </author>
         <category label="Spark" term="Spark"/>
-        <category label="Shuffles" term="Shuffles"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Power BI Data Model - Best Practice Analyzer (BPA)]]></title>
